@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 style="cursor:pointer">Teacher Dashboard</h2>
+            <div class="nav-user">
+                <span style="cursor:pointer" id="userName">Teacher</span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="dashboard-wrapper">
+        <!-- Course Selection Bar (Top) -->
+        <div class="course-selection-bar">
+            <h3 style="margin-bottom: 15px; color: #667eea;">Select Course</h3>
+            <div id="coursesList" class="course-cards-horizontal"></div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-main">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <h3>Navigation</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="sidebar-item" data-section="attendance" onclick="showSection('attendance'); return false;">Mark Attendance</a></li>
+                    <li><a href="#" class="sidebar-item" data-section="attendanceStats" onclick="showSection('attendanceStats'); return false;">Attendance Statistics</a></li>
+                    <li><a href="#" class="sidebar-item" data-section="assignments" onclick="showSection('assignments'); return false;">Assignments</a></li>
+                    <li><a href="#" class="sidebar-item" data-section="students" onclick="showSection('students'); return false;">Manage Students</a></li>
+                </ul>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Initial State - Show Course Selection Message -->
+                <div id="noCourseSelected" class="no-selection-message">
+                    <h2>Welcome to Teacher Dashboard</h2>
+                    <p>Please select a course from above to get started.</p>
+                </div>
+
+                <!-- Mark Attendance Section -->
+                <div id="attendanceSection" class="content-section" style="display: none;">
+                    <h2>Mark Attendance</h2>
+                    <div class="filter-group">
+                        <input type="date" id="attendanceDate" value="" onchange="loadAttendanceStudents()">
+                    </div>
+                    <div id="attendanceStudentsList" class="table-container"></div>
+                    <button onclick="saveAttendance()" class="btn btn-primary" style="margin-top: 20px;">Save Attendance</button>
+                </div>
+                
+                <!-- Attendance Statistics Section -->
+                <div id="attendanceStatsSection" class="content-section" style="display: none;">
+                    <h2>Attendance Statistics</h2>
+                    <div class="filter-group">
+                        <select id="sortOrderSelect" onchange="loadAttendanceStats()">
+                            <option value="desc">Sort: High to Low</option>
+                            <option value="asc">Sort: Low to High</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" style="margin-top: 10px;">
+                        <label for="minPercentage">Min Attendance %:</label>
+                        <input type="number" id="minPercentage" min="0" max="100" step="0.1" placeholder="0" onchange="loadAttendanceStats()" style="width: 120px;">
+                        <label for="maxPercentage" style="margin-left: 20px;">Max Attendance %:</label>
+                        <input type="number" id="maxPercentage" min="0" max="100" step="0.1" placeholder="100" onchange="loadAttendanceStats()" style="width: 120px;">
+                        <button onclick="loadAttendanceStats()" class="btn btn-primary" style="margin-left: 20px;">Filter</button>
+                        <button onclick="clearStatsFilters()" class="btn btn-secondary" style="margin-left: 10px;">Clear Filters</button>
+                    </div>
+                    <div id="attendanceStatsList" class="table-container" style="margin-top: 20px;"></div>
+                </div>
+                
+                <!-- Assignments Section -->
+                <div id="assignmentsSection" class="content-section" style="display: none;">
+                    <h2>Assignments</h2>
+                    <button onclick="showAddAssignmentModal()" class="btn btn-primary" style="margin-bottom: 20px;">+ Add New Assignment</button>
+                    <div id="assignmentsList" class="card-grid"></div>
+                </div>
+                
+                <!-- Manage Students Section -->
+                <div id="studentsSection" class="content-section" style="display: none;">
+                    <h2>Manage Students</h2>
+                    <div id="studentsList" class="table-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAssignmentModal()">&times;</span>
+            <h2>Add New Assignment</h2>
+            <form id="assignmentForm">
+                <div class="form-group">
+                    <label for="assignmentCourse">Course</label>
+                    <select id="assignmentCourse" required>
+                        <option value="">Select Course</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentTitle">Title</label>
+                    <input type="text" id="assignmentTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentDescription">Description</label>
+                    <textarea id="assignmentDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="assignmentDueDate">Due Date</label>
+                    <input type="date" id="assignmentDueDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Assignment</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/teacher_dashboard.js"></script>
+</body>
+</html>

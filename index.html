@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Database Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-card">
+            <h1>Student Database Management System</h1>
+            <p class="subtitle">Select your role to continue</p>
+            
+            <div class="role-selection">
+                <div class="role-card" onclick="selectRole('student')">
+                    <div class="role-icon">👨‍🎓</div>
+                    <h2>Student</h2>
+                    <p>View attendance, assignments, and scores</p>
+                </div>
+                
+                <div class="role-card" onclick="selectRole('teacher')">
+                    <div class="role-icon">👨‍🏫</div>
+                    <h2>Teacher</h2>
+                    <p>Manage courses, attendance, and assignments</p>
+                </div>
+                
+                <div class="role-card" onclick="selectRole('admin')">
+                    <div class="role-icon">👨‍💼</div>
+                    <h2>Admin</h2>
+                    <p>Manage all records and system access</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/index.js"></script>
+</body>
+</html>
+

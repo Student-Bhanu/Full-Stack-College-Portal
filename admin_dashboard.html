@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 style="cursor:pointer">Admin Dashboard</h2>
+            <div class="nav-user">
+                <span style="cursor:pointer" id="userName">Admin</span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="dashboard-wrapper">
+        <!-- Selection Bar -->
+        <div class="selection-bar">
+            <button class="selection-btn active" onclick="showEntityType('students')">Students</button>
+            <button class="selection-btn" onclick="showEntityType('teachers')">Teachers</button>
+            <button class="selection-btn" onclick="showEntityType('results')">Results</button>
+        </div>
+
+        <!-- Students View -->
+        <div id="studentsView" class="entity-view active">
+            <div class="view-header">
+                <h2>Student Records</h2>
+                <button onclick="showAddStudentModal()" class="btn btn-primary">+ Add New Student</button>
+            </div>
+            <div class="filter-group" style="margin-bottom: 20px;">
+                <label>Sort By:</label>
+                <select id="studentSortBy" onchange="loadStudents()">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="roll_number">Roll Number</option>
+                    <option value="semester">Semester</option>
+                    <option value="department">Department</option>
+                </select>
+                <select id="studentSemesterFilter" onchange="loadStudents()" style="margin-left: 10px;">
+                    <option value="">All Semesters</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+                <select id="studentCourseFilter" onchange="loadStudents()" style="margin-left: 10px;">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div id="studentsList" class="table-container"></div>
+        </div>
+
+        <!-- Teachers View -->
+        <div id="teachersView" class="entity-view">
+            <div class="view-header">
+                <h2>Teacher Records</h2>
+            </div>
+            <div class="filter-group" style="margin-bottom: 20px;">
+                <label>Sort By:</label>
+                <select id="teacherSortBy" onchange="loadTeachers()">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="semester">Semester</option>
+                    <option value="course">Course</option>
+                    <option value="students">Number of Students</option>
+                </select>
+                <select id="teacherSemesterFilter" onchange="loadTeachers()" style="margin-left: 10px;">
+                    <option value="">All Semesters</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+                <select id="teacherCourseFilter" onchange="loadTeachers()" style="margin-left: 10px;">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div id="teachersList" class="table-container"></div>
+        </div>
+
+        <!-- Results View -->
+        <div id="resultsView" class="entity-view">
+            <div class="view-header">
+                <h2>Student Results</h2>
+                <button onclick="showUploadResultsModal()" class="btn btn-primary">+ Upload Results</button>
+            </div>
+            <div class="filter-group" style="margin-bottom: 20px;">
+                <select id="resultsSemesterFilter" onchange="loadResults()">
+                    <option value="">All Semesters</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+            <div id="resultsList" class="table-container"></div>
+        </div>
+
+        <!-- Detail View (Slide-in) -->
+        <div id="detailView" class="detail-view">
+            <div class="detail-header">
+                <button onclick="closeDetailView()" class="btn btn-secondary">← Back</button>
+                <h2 id="detailTitle"></h2>
+            </div>
+            <div id="detailContent" class="detail-content"></div>
+        </div>
+    </div>
+
+    <!-- Upload Results Modal -->
+    <div id="uploadResultsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadResultsModal()">&times;</span>
+            <h2>Upload Semester Results</h2>
+            <form id="uploadResultsForm">
+                <div class="form-group">
+                    <label for="resultStudentId">Student</label>
+                    <select id="resultStudentId" required>
+                        <option value="">Select Student</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resultCourseId">Course</label>
+                    <select id="resultCourseId" required>
+                        <option value="">Select Course</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resultSemester">Semester</label>
+                    <input type="number" id="resultSemester" min="1" max="8" required>
+                </div>
+                <div class="form-group">
+                    <label for="resultExamType">Exam Type</label>
+                    <input type="text" id="resultExamType" placeholder="e.g., Midterm, Final" required>
+                </div>
+                <div class="form-group">
+                    <label for="resultScore">Score</label>
+                    <input type="number" id="resultScore" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="resultMaxScore">Max Score</label>
+                    <input type="number" id="resultMaxScore" step="0.01" min="0" value="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="resultExamDate">Exam Date</label>
+                    <input type="date" id="resultExamDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Result</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeStudentModal()">&times;</span>
+            <h2>Add New Student</h2>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="studentUsername">Username</label>
+                    <input type="text" id="studentUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentPassword">Password</label>
+                    <input type="password" id="studentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentName">Full Name</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail">Email</label>
+                    <input type="email" id="studentEmail">
+                </div>
+                <div class="form-group">
+                    <label for="studentRollNumber">Roll Number</label>
+                    <input type="text" id="studentRollNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentSemester">Semester</label>
+                    <input type="number" id="studentSemester" min="1" max="8" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentDepartment">Department</label>
+                    <input type="text" id="studentDepartment" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Student</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/admin_dashboard.js"></script>
+</body>
+</html>

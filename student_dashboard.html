@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 style="cursor:pointer">Student Dashboard</h2>
+            <div class="nav-user">
+                <span style="cursor:pointer" id="userName">Student</span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="dashboard-wrapper">
+        <!-- Top Tabs: This Sem and Results -->
+        <div class="top-tabs-bar">
+            <button class="top-tab-btn active" onclick="showMainTab('thisSem')">This Sem</button>
+            <button class="top-tab-btn" onclick="showMainTab('results')">Results</button>
+        </div>
+
+        <!-- This Sem Tab Content -->
+        <div id="thisSemTab" class="main-tab-content active">
+            <!-- Course Selection Bar -->
+            <div class="course-selection-bar">
+                <h3 style="margin-bottom: 15px; color: #667eea;">Select Course</h3>
+                <div id="currentSemCoursesList" class="course-cards-horizontal"></div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="dashboard-main">
+                <!-- Sidebar Navigation -->
+                <div class="sidebar">
+                    <h3>Navigation</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="sidebar-item" data-section="attendance" onclick="showSection('attendance'); return false;">Attendance</a></li>
+                        <li><a href="#" class="sidebar-item" data-section="assignments" onclick="showSection('assignments'); return false;">Assignments</a></li>
+                    </ul>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Initial State -->
+                    <div id="noCourseSelected" class="no-selection-message">
+                        <h2>Welcome to Student Dashboard</h2>
+                        <p>Please select a course from above to view details.</p>
+                    </div>
+
+                    <!-- Attendance Section -->
+                    <div id="attendanceSection" class="content-section" style="display: none;">
+                        <h2>Attendance Records</h2>
+                        <div id="attendanceList" class="table-container"></div>
+                    </div>
+                    
+                    <!-- Assignments Section -->
+                    <div id="assignmentsSection" class="content-section" style="display: none;">
+                        <h2>Assignments</h2>
+                        <div id="assignmentsList" class="card-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Tab Content -->
+        <div id="resultsTab" class="main-tab-content">
+            <div class="content-area" style="margin-top: 20px;">
+                <h2>Previous Semester Results</h2>
+                <div class="filter-group" style="margin-bottom: 20px;">
+                    <select id="resultsSemesterFilter" onchange="loadResults()">
+                        <option value="">All Semesters</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+                <div id="resultsList" class="table-container"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Assignment Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Assignment</h2>
+            <form id="uploadForm">
+                <input type="hidden" id="uploadAssignmentId">
+                <div class="form-group">
+                    <label for="assignmentFile">Select File</label>
+                    <input type="file" id="assignmentFile" name="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/student_dashboard.js"></script>
+</body>
+</html>
