@@ -2,44 +2,44 @@ use college_db;
 
 -- Teacher Data
 INSERT INTO teacher (username, password, name, email, department) VALUES
-('manoj_cse', 'pass123', 'Prof. Manoj Kumar', 'mkumarg@dce.ac.in', 'Computer Science & Engineering'),
-('dinesh_it', 'pass123', 'Prof. Dinesh K. Vishwakarma', 'dinesh@dtu.ac.in', 'Information Technology'),
-('ruchika_se', 'pass123', 'Prof. Ruchika Malhotra', 'ruchikamalhotra@dtu.ac.in', 'Software Engineering'),
-('neeta_ece', 'pass123', 'Prof. Neeta Pandey', 'neetapandey@dce.ac.in', 'Electronics and Communication Engineering'),
-('bbarora_me', 'pass123', 'Prof. B B Arora', 'bbarora@dce.ac.in', 'Mechanical & Production Engineering'),
-('rachna_ee', 'pass123', 'Prof. Rachna Garg', 'rachnagarg@dtu.ac.in', 'Electrical Engineering'),
-('kc_civil', 'pass123', 'Prof. K C Tiwari', 'hod.ce@dtu.ac.in', 'Civil Engineering'),
-('haritash_env', 'pass123', 'Anil Kumar Haritash', 'akharitash@dce.ac.in', 'Environmental Engineering'),
-('yasha_bt', 'pass123', 'Prof. Yasha Hasija', 'yashahasija@dtu.ac.in', 'Bio Technology'),
-('vinod_phy', 'pass123', 'Prof. Vinod Singh', 'vinodsingh@dtu.ac.in', 'Applied Physics'),
-('srivastava_math', 'pass123', 'Prof. R. Srivastava', 'rsrivastava@dce.ac.in', 'Applied Mathematics'),
-('anil_chem', 'pass123', 'Dr. Anil Kumar', 'anil_kumar@dce.ac.in', 'Applied Chemistry');
+('manoj_cse', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Manoj Kumar', 'mkumarg@dce.ac.in', 'Computer Science & Engineering'),
+('dinesh_it', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Dinesh K. Vishwakarma', 'dinesh@dtu.ac.in', 'Information Technology'),
+('ruchika_se', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Ruchika Malhotra', 'ruchikamalhotra@dtu.ac.in', 'Software Engineering'),
+('neeta_ece', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Neeta Pandey', 'neetapandey@dce.ac.in', 'Electronics and Communication Engineering'),
+('bbarora_me', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. B B Arora', 'bbarora@dce.ac.in', 'Mechanical & Production Engineering'),
+('rachna_ee', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Rachna Garg', 'rachnagarg@dtu.ac.in', 'Electrical Engineering'),
+('kc_civil', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. K C Tiwari', 'hod.ce@dtu.ac.in', 'Civil Engineering'),
+('haritash_env', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Anil Kumar Haritash', 'akharitash@dce.ac.in', 'Environmental Engineering'),
+('yasha_bt', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Yasha Hasija', 'yashahasija@dtu.ac.in', 'Bio Technology'),
+('vinod_phy', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. Vinod Singh', 'vinodsingh@dtu.ac.in', 'Applied Physics'),
+('srivastava_math', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Prof. R. Srivastava', 'rsrivastava@dce.ac.in', 'Applied Mathematics'),
+('anil_chem', '$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS', 'Dr. Anil Kumar', 'anil_kumar@dce.ac.in', 'Applied Chemistry');
 
 
 -- Student Data 
 INSERT INTO student (username, password, name, email, roll_number, semester, department) VALUES
-('aaditya001','pass123','AADITYA JAIN','aaditya001@dtu.ac.in','24/B04/001',3,'Computer Science & Engineering'),
-('aarush002','pass123','AARUSH BHARADWAJ','aarush002@dtu.ac.in','24/B04/002',3,'Information Technology'),
-('aarushi003','pass123','AARUSHI SINGH','aarushi003@dtu.ac.in','24/B04/003',3,'Software Engineering'),
-('abhijai005','pass123','ABHIJAI DAGAR','abhijai005@dtu.ac.in','24/B04/005',3,'Civil Engineering'),
-('abhijeet006','pass123','ABHIJEET SINHA','abhijeet006@dtu.ac.in','24/B04/006',3,'Electrical Engineering'),
-('abhishek009','pass123','ABHISHEK SINGH','abhishek009@dtu.ac.in','24/B04/009',1,'Mechanical Engineering'),
-('adarsh010','pass123','ADARSH','adarsh010@dtu.ac.in','24/B04/010',1,'Electronics & Communication Engineering'),
-('aditya011','pass123','ADITYA GUPTA','aditya011@dtu.ac.in','24/B04/011',1,'Applied Mathematics'),
-('aditya012','pass123','ADITYA RAJ','aditya012@dtu.ac.in','24/B04/012',1,'Applied Physics'),
-('adityas013','pass123','ADITYA S NAIR','adityas013@dtu.ac.in','24/A11/018',1,'Environmental Engineering'),
+('aaditya001','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AADITYA JAIN','aaditya001@dtu.ac.in','24/B04/001',3,'Computer Science & Engineering'),
+('aarush002','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AARUSH BHARADWAJ','aarush002@dtu.ac.in','24/B04/002',3,'Information Technology'),
+('aarushi003','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AARUSHI SINGH','aarushi003@dtu.ac.in','24/B04/003',3,'Software Engineering'),
+('abhijai005','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ABHIJAI DAGAR','abhijai005@dtu.ac.in','24/B04/005',3,'Civil Engineering'),
+('abhijeet006','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ABHIJEET SINHA','abhijeet006@dtu.ac.in','24/B04/006',3,'Electrical Engineering'),
+('abhishek009','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ABHISHEK SINGH','abhishek009@dtu.ac.in','24/B04/009',1,'Mechanical Engineering'),
+('adarsh010','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ADARSH','adarsh010@dtu.ac.in','24/B04/010',1,'Electronics & Communication Engineering'),
+('aditya011','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ADITYA GUPTA','aditya011@dtu.ac.in','24/B04/011',1,'Applied Mathematics'),
+('aditya012','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ADITYA RAJ','aditya012@dtu.ac.in','24/B04/012',1,'Applied Physics'),
+('adityas013','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ADITYA S NAIR','adityas013@dtu.ac.in','24/A11/018',1,'Environmental Engineering'),
 
-('afzal014','pass123','AFZAL','afzal014@dtu.ac.in','24/B04/014',1,'Bio Technology'),
-('akshansh016','pass123','AKSHANSH','akshansh016@dtu.ac.in','24/B04/016',1,'Humanities'),
-('akshat017','pass123','AKSHAT JAIN','akshat017@dtu.ac.in','24/B04/017',1,'Applied Chemistry'),
-('akshay018','pass123','AKSHAY','akshay018@dtu.ac.in','24/B04/018',1,'Design'),
-('akshayk019','pass123','AKSHAY KAUSHAL','akshayk019@dtu.ac.in','24/B04/019',1,'Computer Centre'),
+('afzal014','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AFZAL','afzal014@dtu.ac.in','24/B04/014',1,'Bio Technology'),
+('akshansh016','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AKSHANSH','akshansh016@dtu.ac.in','24/B04/016',1,'Humanities'),
+('akshat017','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AKSHAT JAIN','akshat017@dtu.ac.in','24/B04/017',1,'Applied Chemistry'),
+('akshay018','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AKSHAY','akshay018@dtu.ac.in','24/B04/018',1,'Design'),
+('akshayk019','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AKSHAY KAUSHAL','akshayk019@dtu.ac.in','24/B04/019',1,'Computer Centre'),
 
-('ali021','pass123','ALI KHAN','ali021@dtu.ac.in','24/B04/021',1,'Information Technology'),
-('amit022','pass123','AMIT KUMAR','amit022@dtu.ac.in','24/B04/022',1,'Software Engineering'),
-('amlan023','pass123','AMLAN NANDI','amlan023@dtu.ac.in','24/B04/023',1,'Mechanical Engineering'),
-('ankit024','pass123','ANKIT','ankit024@dtu.ac.in','24/B04/024',1,'Civil Engineering'),
-('ankitp025','pass123','ANKIT PANDEY','ankitp025@dtu.ac.in','24/B04/025',1,'Computer Science & Engineering');
+('ali021','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ALI KHAN','ali021@dtu.ac.in','24/B04/021',1,'Information Technology'),
+('amit022','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AMIT KUMAR','amit022@dtu.ac.in','24/B04/022',1,'Software Engineering'),
+('amlan023','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','AMLAN NANDI','amlan023@dtu.ac.in','24/B04/023',1,'Mechanical Engineering'),
+('ankit024','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ANKIT','ankit024@dtu.ac.in','24/B04/024',1,'Civil Engineering'),
+('ankitp025','$2y$10$YCevy99N.tu0ipFtbfSEZeLxYBPaGn.xp59w3PLDuQBpq7gxxpdNS','ANKIT PANDEY','ankitp025@dtu.ac.in','24/B04/025',1,'Computer Science & Engineering');
 
 -- Course Data
 INSERT INTO course (course_code, course_name, department, credits, semester) VALUES 

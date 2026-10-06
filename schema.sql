@@ -129,4 +129,4 @@ ADD COLUMN graded_at TIMESTAMP NULL,
 ADD FOREIGN KEY (graded_by) REFERENCES teacher(teacher_id) ON DELETE SET NULL;
 
 INSERT INTO admin (username, password, email) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@college.edu');
+('admin', '$2y$10$ISDi/t9oWDl7o4q7JHXgweGYf2V8ty5vjySDB9HbITBUIaHNcs3Lu', 'admin@college.edu');

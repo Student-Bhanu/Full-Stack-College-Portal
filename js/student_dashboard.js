@@ -41,17 +41,11 @@ async function loadCurrentSemesterCourses() {
         if (data.success) {
             allCourses = data.data;
             
-            // Determine current semester from courses (most common semester)
-            const semesterCounts = {};
-            data.data.forEach(course => {
-                semesterCounts[course.semester] = (semesterCounts[course.semester] || 0) + 1;
-            });
-            currentSemester = Object.keys(semesterCounts).reduce((a, b) => 
-                semesterCounts[a] > semesterCounts[b] ? a : b
-            );
-            
-            // Filter courses for current semester
-            const currentSemCourses = data.data.filter(course => course.semester == currentSemester);
+            // Use the semester stored for the logged-in student.
+            currentSemester = user.semester;
+            const currentSemCourses = currentSemester
+                ? data.data.filter(course => course.semester == currentSemester)
+                : data.data;
             
             const coursesList = document.getElementById('currentSemCoursesList');
             coursesList.innerHTML = '';
@@ -315,20 +309,19 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     const assignmentId = document.getElementById('uploadAssignmentId').value;
     const fileInput = document.getElementById('assignmentFile');
     
-    // For demo purposes, we'll just use the filename
-    // In a real app, you'd upload the file to the server
-    const fileName = fileInput.files[0] ? fileInput.files[0].name : 'assignment.pdf';
-    
+    if (!fileInput.files.length) {
+        alert('Please select a file.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('assignment_id', assignmentId);
+    formData.append('file', fileInput.files[0]);
+
     try {
         const response = await fetch('/api/student/assignments', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                assignment_id: assignmentId,
-                file_path: fileName
-            })
+            body: formData
         });
         
         const data = await response.json();

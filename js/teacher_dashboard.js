@@ -142,7 +142,7 @@ async function loadAttendanceStudents() {
             attendanceData = {};
             
             data.data.forEach(student => {
-                attendanceData[student.student_id] = student.attendance_status || 'Present';
+                attendanceData[student.student_id] = student.attendance_status || 'Absent';
                 const checked = student.attendance_status === 'Present' ? 'checked' : '';
                 html += `<tr>
                     <td>${student.roll_number}</td>
@@ -200,7 +200,14 @@ async function saveAttendance() {
     });
     
     try {
-        await Promise.all(promises);
+        const responses = await Promise.all(promises);
+        const failed = responses.filter(response => !response.ok);
+
+        if (failed.length > 0) {
+            alert(`Could not save ${failed.length} attendance record(s).`);
+            return;
+        }
+
         alert('Attendance saved successfully!');
         loadAttendanceStudents();
     } catch (error) {

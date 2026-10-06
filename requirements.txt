@@ -1,5 +1,5 @@
-flask
-flask-cors
+Flask
+Flask-Cors
 mysql-connector-python
 bcrypt
 python-dotenv

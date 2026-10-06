@@ -75,9 +75,10 @@ async function loadStudents() {
             }
             
             if (courseFilter) {
-                // Need to check if student is enrolled in this course
-                // For now, we'll show all and filter client-side if we have course data
-                // This would ideally be done server-side
+                filtered = filtered.filter(student => {
+                    const courseIds = String(student.course_ids || '').split(',').filter(Boolean);
+                    return courseIds.includes(String(courseFilter));
+                });
             }
             
             // Apply sorting
@@ -349,24 +350,39 @@ async function loadTeachers() {
         if (data.success) {
             allTeachers = data.data;
             
-            // Apply filters
             let filtered = [...data.data];
             const semesterFilter = document.getElementById('teacherSemesterFilter').value;
             const courseFilter = document.getElementById('teacherCourseFilter').value;
-            
-            // Apply sorting
+
+            if (semesterFilter) {
+                filtered = filtered.filter(teacher => {
+                    const semesters = String(teacher.course_semesters || '').split(',').filter(Boolean);
+                    return semesters.includes(String(semesterFilter));
+                });
+            }
+
+            if (courseFilter) {
+                filtered = filtered.filter(teacher => {
+                    const courseIds = String(teacher.course_ids || '').split(',').filter(Boolean);
+                    return courseIds.includes(String(courseFilter));
+                });
+            }
+
             const sortBy = document.getElementById('teacherSortBy').value;
             filtered.sort((a, b) => {
                 if (sortBy === 'name') {
                     return a.name.localeCompare(b.name);
-                } else if (sortBy === 'semester') {
-                    // Sort by first course semester (simplified)
-                    return 0; // Would need course data
-                } else if (sortBy === 'course') {
+                }
+                if (sortBy === 'semester') {
+                    const aSem = Math.min(...String(a.course_semesters || '999').split(',').map(Number));
+                    const bSem = Math.min(...String(b.course_semesters || '999').split(',').map(Number));
+                    return aSem - bSem || a.name.localeCompare(b.name);
+                }
+                if (sortBy === 'course') {
                     return (a.courses_taught || '').localeCompare(b.courses_taught || '');
-                } else if (sortBy === 'students') {
-                    // Would need to get student counts per teacher
-                    return 0;
+                }
+                if (sortBy === 'students') {
+                    return (Number(b.student_count) || 0) - (Number(a.student_count) || 0);
                 }
                 return 0;
             });
