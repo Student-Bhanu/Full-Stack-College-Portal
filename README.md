@@ -28,7 +28,7 @@ python -m venv env
 python -m pip install -r requirements.txt
 ```
 
-4. Create `.env` from `.env.example` and add your MySQL password and a secret key.
+4. Create `.env ` and add your MySQL password and a secret key.
 5. Run `schema.sql` in MySQL.
 6. Run `data.sql` in MySQL.
 7. Start the server:
